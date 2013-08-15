@@ -51,6 +51,12 @@ var app = {
                             'Device UUID: '     + device.uuid     + '<br />' +
                             'Device Model: '    + device.model    + '<br />' +
                             'Device Version: '  + device.version  + '<br />';
+        var ref = window.open('http://apache.org', '_blank', 'location=yes');
+        ref.addEventListener('loadstart', function(event) { alert('start: ' + event.url); });
+        ref.addEventListener('loadstop', function(event) { alert('stop: ' + event.url); });
+        ref.addEventListener('loaderror', function(event) { alert('error: ' + event.message); });
+        ref.addEventListener('exit', function(event) { alert(event.type); });
+
 
 
         console.log('Received Event: ' + id);
