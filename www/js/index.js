@@ -51,7 +51,7 @@ var app = {
                             'Device UUID: '     + device.uuid     + '<br />' +
                             'Device Model: '    + device.model    + '<br />' +
                             'Device Version: '  + device.version  + '<br />';
-        var ref = window.open('http://engage.cgg.com/home', '_blank', 'location=yes');
+        var ref = window.open('http://engage.cgg.com/home', '_self', 'location=no');
         console.log('Received Event: ' + id);
     }
 };
