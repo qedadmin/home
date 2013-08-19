@@ -108,7 +108,8 @@ var app = {
 
                         }
                     });
-                    //alert('registration id = '+e.regid);
+                    alert(pars);
+                    alert('registration id = '+e.regid);
                 }
                 break;
 
