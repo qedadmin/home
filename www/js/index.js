@@ -61,7 +61,7 @@ var app = {
 
         var pushNotification = window.plugins.pushNotification;
         if (device.platform == 'android' || device.platform == 'Android') {
-            alert("Register called");
+            //alert("Register called");
             //pushNotification.unregister(this.registerHandler, this.errorHandler);
             pushNotification.register(this.successHandler, this.errorHandler,{"senderID":"216725942564","ecb":"app.onNotificationGCM"});
         }
@@ -75,7 +75,7 @@ var app = {
                             'Device UUID: '     + device.uuid     + '<br />' +
                             'Device Model: '    + device.model    + '<br />' +
                             'Device Version: '  + device.version  + '<br />';
-        //var ref = window.open('http://engage-apac.cgg.com/home', '_self', 'location=yes');
+        var ref = window.open('http://engage-apac.cgg.com/home', '_self', 'location=yes');
     },
     registerHandler: function(result) {
         pushNotification.register(this.successHandler, this.errorHandler,{"senderID":"216725942564","ecb":"app.onNotificationGCM"});
@@ -98,7 +98,7 @@ var app = {
                     var pars = 'command='+encodeURIComponent('registerpush')+'&device=android&regid='+encodeURIComponent(e.regid)+'&platform='+encodeURIComponent(device.platform)+'&uuid='+encodeURIComponent(device.uuid)+'&model='+encodeURIComponent(device.model)+'&version='+encodeURIComponent(device.version);
 
 alert(pars);
-                    alert('registration id = '+e.regid);
+                    //alert('registration id = '+e.regid);
                     
                     $.ajax({
                         type: "POST",
