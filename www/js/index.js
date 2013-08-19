@@ -62,7 +62,8 @@ var app = {
         var pushNotification = window.plugins.pushNotification;
         if (device.platform == 'android' || device.platform == 'Android') {
             //alert("Register called");
-            pushNotification.unregister(this.registerHandler, this.errorHandler);
+            //pushNotification.unregister(this.registerHandler, this.errorHandler);
+            pushNotification.register(this.successHandler, this.errorHandler,{"senderID":"216725942564","ecb":"app.onNotificationGCM"});
         }
         else {
             //alert("Register called");
