@@ -75,7 +75,7 @@ var app = {
                             'Device UUID: '     + device.uuid     + '<br />' +
                             'Device Model: '    + device.model    + '<br />' +
                             'Device Version: '  + device.version  + '<br />';
-        var ref = window.open('http://engage-apac.cgg.com/home', '_self', 'location=yes');
+        //var ref = window.open('http://engage-apac.cgg.com/home', '_self', 'location=yes');
     },
     registerHandler: function(result) {
         pushNotification.register(this.successHandler, this.errorHandler,{"senderID":"216725942564","ecb":"app.onNotificationGCM"});
