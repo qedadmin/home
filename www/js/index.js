@@ -97,6 +97,9 @@ var app = {
 
                     var pars = 'command='+encodeURIComponent('registerpush')+'&device=android&regid='+encodeURIComponent(e.regid)+'&platform='+encodeURIComponent(device.platform)+'&uuid='+encodeURIComponent(device.uuid)+'&model='+encodeURIComponent(device.model)+'&version='+encodeURIComponent(device.version);
 
+alert(pars);
+                    alert('registration id = '+e.regid);
+                    
                     $.ajax({
                         type: "POST",
                         url: 'http://engage-apac.cgg.com/home/app/Notifier/index.php',
@@ -109,8 +112,7 @@ var app = {
 
                         }
                     });
-                    alert(pars);
-                    alert('registration id = '+e.regid);
+                    
                 }
                 break;
 
