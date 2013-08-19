@@ -33,6 +33,18 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
+        document.addEventListener("backbutton", function(e)
+        {
+            if( $("#home").length > 0)
+            {
+                e.preventDefault();
+                navigator.app.exitApp();
+            }
+            else
+            {
+                navigator.app.backHistory();
+            }
+        }, false);
         app.receivedEvent('deviceready');
     },
     // Update DOM on a Received Event
@@ -49,8 +61,8 @@ var app = {
 
         var pushNotification = window.plugins.pushNotification;
         if (device.platform == 'android' || device.platform == 'Android') {
-            alert("Register called");
-            pushNotification.register(this.successHandler, this.errorHandler,{"senderID":"216725942564","ecb":"app.onNotificationGCM"});
+            //alert("Register called");
+            pushNotification.unregister(this.registerHandler, this.errorHandler);
         }
         else {
             //alert("Register called");
@@ -58,12 +70,14 @@ var app = {
         }
 
         var element = document.getElementById('deviceProperties');
-        element.innerHTML = 'Device Cordova: '  + device.cordova  + '<br />' +
-                            'Device Platform: ' + device.platform + '<br />' +
+        element.innerHTML = 'Device Platform: ' + device.platform + '<br />' +
                             'Device UUID: '     + device.uuid     + '<br />' +
                             'Device Model: '    + device.model    + '<br />' +
                             'Device Version: '  + device.version  + '<br />';
         var ref = window.open('http://engage-apac.cgg.com/home', '_self', 'location=yes');
+    },
+    registerHandler: function(result) {
+        pushNotification.register(this.successHandler, this.errorHandler,{"senderID":"216725942564","ecb":"app.onNotificationGCM"});
     },
     // result contains any message sent from the plugin call
     successHandler: function(result) {
@@ -79,7 +93,22 @@ var app = {
                 if ( e.regid.length > 0 )
                 {
                     console.log("Regid " + e.regid);
-                    alert('registration id = '+e.regid);
+
+                    var pars = 'command='+encodeURIComponent('registerpush')+'&device=android&regid='+encodeURIComponent(e.regid)+'&platform='+encodeURIComponent(device.platform)+'&uuid='+encodeURIComponent(device.uuid)+'&model='+encodeURIComponent(device.model)+'&version='+encodeURIComponent(device.version);
+
+                    $.ajax({
+                        type: "POST",
+                        url: 'http://engage-apac.cgg.com/home/app/Notifier/index.php',
+                        data: pars,
+                        dataType: "json",
+                        success: function(json) {
+
+                        },
+                        error: function() {
+
+                        }
+                    });
+                    //alert('registration id = '+e.regid);
                 }
                 break;
 
